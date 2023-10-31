@@ -5,6 +5,10 @@ class Calc {
     static int[] expInt = new int[2];
     static int run(String exp) {
 
+        if (exp.startsWith("(")) {
+            exp = String.valueOf(run(exp.substring(1, exp.length() - 1)));
+        }
+
 
         if (exp.contains("-")) {
             assign(exp, "\\-");
@@ -25,7 +29,7 @@ class Calc {
             assign(exp, "/");
             return expInt[0] / expInt[1];
         }
-        return 0;
+        return Integer.parseInt(exp);
     }
 
     static int[] assign(String exp, String rgx) {
